@@ -85,27 +85,6 @@ class NetteLatteEngine {
   }
 
   /**
-   * Gets file header from latte file
-   * https://developer.wordpress.org/reference/functions/get_file_data/
-   */
-  private function getFileData(string $file, array $all_headers) {
-    $fp = fopen($file, 'r');
-    $fileData = fread($fp, 8192);
-    fclose($fp);
-    $fileData = str_replace("\r", "\n", $fileData);
- 
-    foreach ($all_headers as $field => $regex) {
-      if (preg_match('/^{\*\s+' . preg_quote($regex, '/') . ':(.*)$/mi', $fileData, $match) && $match[1] ) {
-        $all_headers[$field] = trim($match[1]);
-      } else {
-        $all_headers[$field] = '';
-      }
-    }
-
-    return $all_headers;
-  }
-
-  /**
    * Gets instance of the self
    * @return self
    */
@@ -187,14 +166,15 @@ class NetteLatteEngine {
 
   /**
    * Return custom templates from theme directory
+   * https://developer.wordpress.org/reference/classes/wp_theme/get_post_templates/
    */
   public function registerCustomTemplates(array $page_templates, \WP_Theme $theme, \WP_Post $post): array
   {
-    $files = glob(get_template_directory() . '/*.latte');
+    $files = $theme->get_files('latte', 1);
     $postType = get_post_type($post);
 
     foreach ($files as $file) {
-      $headers = $this->getFileData($file, [
+      $headers = get_file_data($file, [
         'templateName' => 'Template Name',
         'postType' => 'Template Post Type',
       ]);

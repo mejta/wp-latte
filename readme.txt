@@ -63,6 +63,9 @@ e.g.
 1. Use the `.latte` files in your templates
  
 == Changelog ==
- 
+
+= 1.1 =
+* added support for custom post templates
+
 = 1.0 =
 * Initial release.
