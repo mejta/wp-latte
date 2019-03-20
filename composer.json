@@ -1,0 +1,8 @@
+{
+  "autoload": {
+    "psr-4": {"NetteLatteEngine\\": "src/"}
+  },
+  "require": {
+      "latte/latte": "^2.5"
+  }
+}
