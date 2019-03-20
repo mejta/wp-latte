@@ -13,7 +13,9 @@ This plugin enables Nette Latte templates in themes.
  
 == Description ==
  
-This plugin gives theme developers availability to develop themes with [Nette Latte v2.5](https://latte.nette.org/en/). You should use [TGMA](http://tgmpluginactivation.com/) in your theme to require this plugin.
+This plugin gives theme developers availability to develop themes with [Nette Latte v2.5](https://latte.nette.org/en/).
+
+## Usage
 
 After plugin activation, you can use Nette Latte templates in your theme. Just use `.latte` file extension instead of `.php`. Template files with `.php`  extension will continue to work, but that templates will have lower priority in template resolution.
 
@@ -34,6 +36,10 @@ if (class_exists('NetteLatteEngine\NetteLatteEngine')) {
   NetteLatteEngine::addFilter('test', $callback_function);
 }
 ```
+
+## Contribution
+
+Feel free to improve the plugin and open pull request in the [Github repository](https://github.com/mejta/wp-latte).
 
 == Installation ==
  
