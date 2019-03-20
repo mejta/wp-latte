@@ -1,7 +1,6 @@
 <?php
 /*
 Plugin Name: Nette Latte Engine
-Plugin URI: https://www.mejta.net
 Description: Nette Latte template engine support for WordPress.
 Author: Daniel Mejta
 Version: 1.0.0
