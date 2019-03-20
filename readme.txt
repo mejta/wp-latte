@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Nette Latte Engine ===
 Contributors: mejta
 Donate link: https://www.mejta.net/
 Tags: nette, latte
