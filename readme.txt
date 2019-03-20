@@ -3,9 +3,8 @@ Contributors: mejta
 Donate link: https://www.mejta.net/
 Tags: nette, latte
 Requires at least: 4.7
-Tested up to: 5.0
+Tested up to: 5.1
 Requires PHP: 5.6.0
-Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -35,6 +34,18 @@ if (class_exists('NetteLatteEngine\NetteLatteEngine')) {
   // https://latte.nette.org/en/guide#toc-custom-filters
   NetteLatteEngine::addFilter('test', $callback_function);
 }
+```
+
+If you want define custom post template, create a template file in theme root directory and put the comment block at the begining of the file like this:
+
+```php
+{*
+Template Name: Custom template file
+Template Post Type: post, page
+*}
+...
+<h1>Content</h1>
+...
 ```
 
 ## Contribution
