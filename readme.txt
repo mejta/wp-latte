@@ -27,7 +27,7 @@ You can also define your custom filters and macros. Use the following code in yo
 use NetteLatteEngine\NetteLatteEngine;
 
 if (class_exists('NetteLatteEngine\NetteLatteEngine')) {
-  // https://latte.nette.org/en/guide#toc-custom-filters
+  // https://latte.nette.org/en/guide#toc-user-defined-macros
   NetteLatteEngine::addMacro('test', $start_php_code, $end_php_code);
 
   // https://latte.nette.org/en/guide#toc-custom-filters
