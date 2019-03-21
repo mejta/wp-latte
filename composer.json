@@ -2,7 +2,7 @@
     "name": "mejta/wp-latte",
     "description": "WordPress mu-plugin that implements Nette Latte templating engine",
     "type": "library",
-    "license": "GPLv2",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Daniel Mejta",
