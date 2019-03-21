@@ -13,9 +13,5 @@ if (!function_exists('add_action')) {
 
 if(!class_exists('NetteLatteEngine\NetteLatteEngine')) {
   require __DIR__ . '/vendor/autoload.php';
-
-  register_activation_hook(__FILE__, ['NetteLatteEngine\NetteLatteEngine', 'activate']);
-  register_deactivation_hook(__FILE__, ['NetteLatteEngine\NetteLatteEngine', 'deactivate']);
-
   NetteLatteEngine\NetteLatteEngine::initialize();
 }

@@ -73,18 +73,6 @@ class NetteLatteEngine {
   }
 
   /**
-   * Removes cache directory path
-   */
-  private function removeCachePath(): void
-  {
-    require_once (ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php');
-    require_once (ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php');
-    $cachePath = $this->getCachePath();
-    $fileSystemDirect = new \WP_Filesystem_Direct(false);
-    $fileSystemDirect->rmdir($cachePath, true);
-  }
-
-  /**
    * Gets instance of the self
    * @return self
    */
@@ -102,22 +90,6 @@ class NetteLatteEngine {
   public static function initialize(): void
   {
     self::getInstance();
-  }
-
-  /**
-   * Plugin activation
-   */
-  public static function activate(): void
-  {
-    self::getInstance()->createCachePath();
-  }
-
-  /**
-   * Plugin deactivation
-   */
-  public static function deactivate(): void
-  {
-    self::getInstance()->removeCachePath();
   }
 
   /**

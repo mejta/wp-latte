@@ -1,8 +1,18 @@
 {
-  "autoload": {
-    "psr-4": {"NetteLatteEngine\\": "src/"}
-  },
-  "require": {
-      "latte/latte": "^2.5"
-  }
+    "name": "mejta/wp-latte",
+    "description": "WordPress mu-plugin that implements Nette Latte templating engine",
+    "type": "library",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Daniel Mejta",
+            "email": "daniel@mejta.net"
+        }
+    ],
+    "autoload": {
+      "psr-4": {"NetteLatteEngine\\": "src/"}
+    },
+    "require": {
+        "latte/latte": "^2.5"
+    }
 }

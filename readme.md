@@ -1,20 +1,25 @@
-=== Nette Latte Engine ===
-Contributors: mejta
-Donate link: https://www.mejta.net/
-Tags: nette, latte
-Requires at least: 4.7
-Tested up to: 5.1
-Requires PHP: 5.6.0
+# Nette Latte Engine for WordPress
+
+This [mu-plugin](https://codex.wordpress.org/Must_Use_Plugins) gives theme and plugin developers availability to write templates with [Nette Latte v2.5](https://latte.nette.org/en/).
+
+## Requirements
+
+WordPress: 4.7+
+PHP: 5.6.0+
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
- 
-This plugin enables Nette Latte templates in themes.
- 
-== Description ==
- 
-This plugin gives theme developers availability to develop themes with [Nette Latte v2.5](https://latte.nette.org/en/).
 
 ## Usage
+
+1. Go to `wp-content/mu-plugins` folder and clone the repository with `git clone git@github.com:mejta/wp-latte.git` command.
+1. Go to plugin folder with `cd wp-latte`
+1. Install composer dependencies with `composer install`
+1. Don't forget to load the plugin in your loader (e.g. `wp-content/mu-plugins/load.php`):
+
+```php
+<?php // wp-content/mu-plugins/load.php
+require WPMU_PLUGIN_DIR . '/wp-latte/wp-latte.php';
+```
 
 After plugin activation, you can use Nette Latte templates in your theme. Just use `.latte` file extension instead of `.php`. Template files with `.php`  extension will continue to work, but that templates will have lower priority in template resolution.
 
@@ -38,7 +43,7 @@ if (class_exists('NetteLatteEngine\NetteLatteEngine')) {
 
 If you want define custom post template, create a template file in theme root directory and put the comment block at the begining of the file like this:
 
-```php
+```latte
 {*
 Template Name: Custom template file
 Template Post Type: post, page
@@ -51,21 +56,3 @@ Template Post Type: post, page
 ## Contribution
 
 Feel free to improve the plugin and open pull request in the [Github repository](https://github.com/mejta/wp-latte).
-
-== Installation ==
- 
-This section describes how to install the plugin and get it working.
- 
-e.g.
- 
-1. Install plugin from WordPress directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Use the `.latte` files in your templates
- 
-== Changelog ==
-
-= 1.1 =
-* added support for custom post templates
-
-= 1.0 =
-* Initial release.
