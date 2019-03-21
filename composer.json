@@ -11,7 +11,8 @@
     ],
     "minimum-stability": "stable",
     "autoload": {
-      "psr-4": {"NetteLatteEngine\\": "src/"}
+      "psr-4": {"NetteLatteEngine\\": "src/"},
+      "files": ["wp-latte.php"]
     },
     "require": {
         "latte/latte": "^2.5"
