@@ -41,7 +41,7 @@ class NetteLatteEngine {
       add_filter($type . '_template_hierarchy', [$this, 'addLatteTemplate']);
     }
 
-    add_filter('template_include', [$this, 'templateInclude']);
+    add_filter('template_include', [$this, 'render']);
     add_filter('comments_template', [$this, 'commentsTemplate']);
     add_filter('theme_page_templates', [$this, 'registerCustomTemplates'], 10, 3);
   }
@@ -90,14 +90,6 @@ class NetteLatteEngine {
   public static function initialize(): void
   {
     self::getInstance();
-  }
-
-  /**
-   * Renders $template
-   */
-  public static function render(string $template, array $params = []): void
-  {
-    self::getInstance()->templateInclude($template, $params);
   }
 
   /**
@@ -172,26 +164,49 @@ class NetteLatteEngine {
     return $page_templates;
   }
 
+  private function prepareRenderParams(array $additionalParams = []): array
+  {
+    // https://developer.wordpress.org/reference/functions/load_template/
+    global $posts, $post, $wp_did_header, $wp_query, $wp_rewrite, $wpdb, $wp_version, $wp, $id, $comment, $user_ID;
+    $params = compact('posts', 'post', 'wp_did_header', 'wp_query', 'wp_rewrite', 'wpdb', 'wp_version', 'wp', 'id', 'comment', 'user_ID');
+
+    if (is_array($wp_query->query_vars)) {
+      $params = array_merge($wp_query->query_vars, $params);
+    }
+
+    return array_merge($params, $additionalParams);
+  }
+
   /**
    * Renders template
    */
-  public function templateInclude(string $template, array $additionalParams = []): string
+  public static function render(string $template, array $additionalParams = []): string
   {
     if (preg_match('/\.latte$/m', $template)) {
-      // https://developer.wordpress.org/reference/functions/load_template/
-      global $posts, $post, $wp_did_header, $wp_query, $wp_rewrite, $wpdb, $wp_version, $wp, $id, $comment, $user_ID;
-      $params = compact('posts', 'post', 'wp_did_header', 'wp_query', 'wp_rewrite', 'wpdb', 'wp_version', 'wp', 'id', 'comment', 'user_ID');
+      self::getInstance()->engine->render(
+        $template,
+        self::getInstance()->prepareRenderParams($additionalParams)
+      );
 
-      if (is_array($wp_query->query_vars)) {
-        $params = array_merge($wp_query->query_vars, $params);
-      }
-
-      $this->engine->render($template, array_merge($params, $additionalParams));
-
-      return $this->emptyTemplate;
+      return self::getInstance()->emptyTemplate;
     }
 
     return $template;
+  }
+
+  /**
+   * Renders template to string
+   */
+  public static function renderToString(string $template, array $additionalParams = []): string
+  {
+    if (preg_match('/\.latte$/m', $template)) {
+      return self::getInstance()->engine->renderToString(
+        $template,
+        self::getInstance()->prepareRenderParams($additionalParams)        
+      );
+    }
+
+    return '';
   }
 
   /**
@@ -206,7 +221,7 @@ class NetteLatteEngine {
     }
 
     if (file_exists($latteTemplate)) {
-      $commentTemplate = $this->templateInclude($latteTemplate);
+      $commentTemplate = $this->render($latteTemplate);
     }
 
     return $commentTemplate;
