@@ -132,7 +132,7 @@ class NetteLatteEngine {
    * Return custom templates from theme directory
    * https://developer.wordpress.org/reference/classes/wp_theme/get_post_templates/
    */
-  public function registerCustomTemplates(array $page_templates, \WP_Theme $theme, \WP_Post $post): array
+  public function registerCustomTemplates(array $page_templates, \WP_Theme $theme, \WP_Post $post = null): array
   {
     $files = $theme->get_files('latte', 1);
     $postType = get_post_type($post);
