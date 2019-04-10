@@ -103,7 +103,7 @@ class NetteLatteEngine {
   /**
    * Adds macro to Latte
    */
-  public static function addMacro(string $tag, string $start, string $end = null): void
+  public static function addMacro($tag, $start, $end = null): void
   {
     self::getInstance()->set->addMacro($tag, $start, $end);
   }
@@ -142,6 +142,10 @@ class NetteLatteEngine {
         'templateName' => 'Template Name',
         'postType' => 'Template Post Type',
       ]);
+
+      if (!$headers) {
+        continue;
+      }
 
       if (!$headers['templateName']) {
         continue;
