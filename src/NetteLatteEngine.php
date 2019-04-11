@@ -151,7 +151,7 @@ class NetteLatteEngine {
         continue;
       }
 
-      if (!$headers->postType) {
+      if (!$headers['postType']) {
         $headers['postType'] = 'page';
       }
 
