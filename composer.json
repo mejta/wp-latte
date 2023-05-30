@@ -15,6 +15,6 @@
       "files": ["wp-latte.php"]
     },
     "require": {
-        "latte/latte": "^2.5"
+        "latte/latte": "^v2.11"
     }
 }
