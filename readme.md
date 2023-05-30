@@ -28,6 +28,7 @@ require WPMU_PLUGIN_DIR . '/vendor/autoload.php';
 
 ```php
 <?php // wp-content/mu-plugins/load.php
+require WPMU_PLUGIN_DIR . '/wp-latte/vendor/autoload.php';
 require WPMU_PLUGIN_DIR . '/wp-latte/wp-latte.php';
 ```
 
